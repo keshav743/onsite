@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<style>
+    body{
+        margin: 5rem;
+    }
+</style>
+<body>
+
+    <form action="/" method="post" class="form-group">
+        <input type="url" name="fullURL" id="fullURL" class="form-control"placeholder="Place your Full URL Here (including https or http)"><br>
+        <button type="submit" class="btn btn-outline-success btn-sm">Generate</button>
+    </form>
+
+    <% if(data.length > 0){ %>
+        <table class="table table-light">
+            <thead>
+                <th>S.no</th>
+                <th>FULL URL</th>
+                <th>SHORT URL</th>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<data.length; i++){ %>
+                    <tr>
+                        <td><%= (i+1).toString() %>)</td>
+                        <td><a href="<%= data[i].fullURL %>"><%= data[i].fullURL %></a></td>
+                        <td><a href="<%= data[i].shortURL %>"><%= data[i].shortURL %></a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% }else{ %> 
+        <h3>No URL's are shortened yet.</h3>
+    <% } %>    
+</body>
+</html>
